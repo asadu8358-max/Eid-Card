@@ -1,0 +1,223 @@
+/* Reset and Base Styles */
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    font-family: 'Poppins', 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+}
+
+body {
+    min-height: 100vh;
+    background: linear-gradient(135deg, #0f2027, #203a43, #2c5364);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    overflow: hidden;
+}
+
+/* Card Container for 3D Perspective */
+.card-container {
+    width: 350px;
+    height: 500px;
+    perspective: 1000px;
+    cursor: pointer;
+    position: relative;
+}
+
+/* The Card Wrapper */
+.card {
+    width: 100%;
+    height: 100%;
+    position: relative;
+    transform-style: preserve-3d;
+    transition: transform 0.8s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+    box-shadow: 0 15px 35px rgba(0, 0, 0, 0.5);
+    border-radius: 20px;
+}
+
+/* Class to be toggled by JavaScript */
+.card.open {
+    transform: rotateY(180deg);
+}
+
+/* Shared Front and Back Styles */
+.card-front, .card-back {
+    position: absolute;
+    width: 100%;
+    height: 100%;
+    backface-visibility: hidden;
+    border-radius: 20px;
+    border: 3px solid #d4af37; /* Royal Gold Border */
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: space-between;
+    padding: 40px 20px;
+}
+
+/* --- FRONT DESIGN --- */
+.card-front {
+    background: radial-gradient(circle, #064e3b 0%, #022c22 100%);
+    color: #e2e8f0;
+}
+
+.moon-star {
+    font-size: 4rem;
+    filter: drop-shadow(0 0 14px #facc15);
+    animation: float 3s ease-in-out infinite;
+}
+
+.card-front h1 {
+    font-size: 2.5rem;
+    color: #fde68a;
+    text-transform: uppercase;
+    letter-spacing: 2px;
+    text-shadow: 2px 2px 12px rgba(59, 130, 246, 0.35);
+    text-align: center;
+}
+
+.tap-instruction {
+    font-size: 0.95rem;
+    color: #bae6fd;
+    font-style: italic;
+    opacity: 0.9;
+}
+
+.animal-emojis {
+    font-size: 2.5rem;
+    letter-spacing: 12px;
+    text-shadow: 0 2px 4px rgba(0,0,0,0.2);
+}
+
+.card-back {
+    background: #fdfbf7;
+    color: #1e293b;
+    transform: rotateY(180deg); /* Start flipped */
+    text-align: center;
+    overflow: hidden;
+    position: relative;
+}
+
+.card-back > :not(.confetti) {
+    position: relative;
+    z-index: 1;
+}
+
+.confetti {
+    position: absolute;
+    inset: 0;
+    pointer-events: none;
+    z-index: 0;
+}
+
+.confetti span {
+    position: absolute;
+    font-size: 1.9rem;
+    opacity: 0;
+    transform: translateY(25px) scale(0.86);
+}
+
+.card.open .confetti span {
+    opacity: 1;
+    animation-duration: 2.8s;
+    animation-timing-function: ease-in-out;
+    animation-iteration-count: infinite;
+}
+
+
+.card.open .confetti span:nth-child(1) {
+    right: 18px;
+    bottom: 18px;
+    animation-name: confettiRight;
+    animation-delay: 0s;
+}
+
+.card.open .confetti span:nth-child(2) {
+    left: 18px;
+    bottom: 18px;
+    animation-name: confettiLeft;
+    animation-delay: 0.14s;
+}
+
+@keyframes confettiRight {
+    0% {
+        opacity: 0;
+        transform: translateY(30px) translateX(0) scale(0.86);
+    }
+    15% {
+        opacity: 1;
+    }
+    45% {
+        transform: translateY(-80px) translateX(18px) scale(0.98);
+    }
+    85% {
+        opacity: 1;
+    }
+    100% {
+        opacity: 0;
+        transform: translateY(-150px) translateX(30px) scale(1.02);
+    }
+}
+
+@keyframes confettiLeft {
+    0% {
+        opacity: 0;
+        transform: translateY(30px) translateX(0) scale(0.86);
+    }
+    15% {
+        opacity: 1;
+    }
+    45% {
+        transform: translateY(-80px) translateX(-18px) scale(0.98);
+    }
+    85% {
+        opacity: 1;
+    }
+    100% {
+        opacity: 0;
+        transform: translateY(-150px) translateX(-30px) scale(1.02);
+    }
+}
+
+
+
+.celebration-icon {
+    font-size: 2rem;
+}
+
+.main-wishes {
+    font-size: 2.2rem;
+    color: #15803d; /* Festive Green */
+    font-weight: 700;
+}
+
+.message {
+    font-size: 1.05rem;
+    line-height: 1.6;
+    color: #475569;
+}
+
+.divider {
+    color: #d4af37;
+    letter-spacing: -2px;
+}
+
+.sender-tag {
+    font-size: 0.85rem;
+    text-transform: uppercase;
+    letter-spacing: 1px;
+    color: #64748b;
+    margin-bottom: -5px;
+}
+
+.sender-name {
+    font-size: 1.4rem;
+    color: #b45309; /* Deep Warm Gold/Amber */
+    font-weight: 600;
+}
+
+/* Simple Floating Animation for the Moon */
+@keyframes float {
+    0%, 100% { transform: translateY(0); }
+    50% { transform: translateY(-10px); }
+}
